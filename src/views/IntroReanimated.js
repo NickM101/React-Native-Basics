@@ -9,7 +9,7 @@ import Animated, {
   useAnimatedStyle
 } from "react-native-reanimated"
 
-const TestAnimation = () => {
+const IntroReanimated = () => {
   const progress = useSharedValue(1)
   const scale = useSharedValue(2)
 
@@ -36,7 +36,7 @@ const TestAnimation = () => {
   )
 }
 
-export default TestAnimation
+export default IntroReanimated
 
 const styles = StyleSheet.create({
   container: {
