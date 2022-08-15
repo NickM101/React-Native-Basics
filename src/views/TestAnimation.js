@@ -1,30 +1,37 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { StyleSheet, Button, View } from "react-native"
 
 // Reanimated
 import Animated, {
-  withTiming,
+  withRepeat,
   withSpring,
   useSharedValue,
   useAnimatedStyle
 } from "react-native-reanimated"
 
 const TestAnimation = () => {
-  const offset = useSharedValue(0)
+  const progress = useSharedValue(1)
+  const scale = useSharedValue(2)
 
   const animatedStyles = useAnimatedStyle(() => {
     return {
-      transform: [{ translateX: offset.value }]
+      opacity: progress.value,
+      borderRadius: (progress.value * 100) / 2,
+      transform: [
+        { scale: scale.value },
+        { rotate: `${progress.value * 2 * Math.PI}rad` }
+      ]
     }
+  }, [])
+
+  useEffect(() => {
+    progress.value = withRepeat(withSpring(0.5), 3, true)
+    scale.value = withRepeat(withSpring(1), 3, true)
   }, [])
 
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.box, animatedStyles]} />
-      <Button
-        title="Move"
-        onPress={() => (offset.value = withSpring(Math.random() * 255))}
-      />
     </View>
   )
 }
@@ -35,6 +42,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: "white"
   },
   box: {
