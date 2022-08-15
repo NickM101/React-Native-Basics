@@ -3,6 +3,7 @@ import { StyleSheet, Button, View } from "react-native"
 
 // Reanimated
 import Animated, {
+  withTiming,
   useSharedValue,
   useAnimatedStyle
 } from "react-native-reanimated"
@@ -21,7 +22,7 @@ const TestAnimation = () => {
       <Animated.View style={[styles.box, animatedStyles]} />
       <Button
         title="Move"
-        onPress={() => (offset.value = Math.random() * 255)}
+        onPress={() => (offset.value = withTiming(Math.random() * 255))}
       />
     </View>
   )
@@ -38,8 +39,9 @@ const styles = StyleSheet.create({
   box: {
     marginVertical: 50,
     marginHorizontal: 10,
-    height: 50,
-    width: 50,
-    backgroundColor: "blue"
+    height: 100,
+    width: 100,
+    backgroundColor: "blue",
+    borderRadius: 20
   }
 })
