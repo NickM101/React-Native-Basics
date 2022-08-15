@@ -1,10 +1,13 @@
 import React from "react"
-import { View, Text } from "react-native"
+import { NavigationContainer } from "@react-navigation/native"
+
+// Navigation
+import Router from "./src/routes/MainNavigator"
 
 export default function App() {
   return (
-    <View>
-      <Text>Hello World</Text>
-    </View>
+    <NavigationContainer>
+      <Router />
+    </NavigationContainer>
   )
 }
