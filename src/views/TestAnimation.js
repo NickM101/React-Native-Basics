@@ -4,6 +4,7 @@ import { StyleSheet, Button, View } from "react-native"
 // Reanimated
 import Animated, {
   withTiming,
+  withSpring,
   useSharedValue,
   useAnimatedStyle
 } from "react-native-reanimated"
@@ -22,7 +23,7 @@ const TestAnimation = () => {
       <Animated.View style={[styles.box, animatedStyles]} />
       <Button
         title="Move"
-        onPress={() => (offset.value = withTiming(Math.random() * 255))}
+        onPress={() => (offset.value = withSpring(Math.random() * 255))}
       />
     </View>
   )
